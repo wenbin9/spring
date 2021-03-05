@@ -1,0 +1,36 @@
+
+entity Report {
+	reportName String,
+    reportSize Long,
+    createdBy String,
+    createdDt LocalDate,
+    status String
+}
+
+entity ReportTemplate {
+	templateId String,
+    templateName String,
+    templateFileName String,
+    templateFile Blob,
+    effectiveDt LocalDate,
+    expiryDt LocalDate,
+    status String,
+    createdBy String,
+    createdDt LocalDate,
+    updatedBy String,
+    updatedDt LocalDate,
+    version Integer
+}
+
+// Set pagination options
+paginate * with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

@@ -1,0 +1,96 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="springApp.reportTemplate.home.title">Report Templates</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-report-template" [routerLink]="['/report-template/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="springApp.reportTemplate.home.createLabel">
+            Create a new Report Template
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="reportTemplates?.length === 0">
+        <span jhiTranslate="springApp.reportTemplate.home.notFound">No reportTemplates found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="reportTemplates && reportTemplates.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="templateId"><span jhiTranslate="springApp.reportTemplate.templateId">Template Id</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="templateName"><span jhiTranslate="springApp.reportTemplate.templateName">Template Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="templateFileName"><span jhiTranslate="springApp.reportTemplate.templateFileName">Template File Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="templateFile"><span jhiTranslate="springApp.reportTemplate.templateFile">Template File</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="effectiveDt"><span jhiTranslate="springApp.reportTemplate.effectiveDt">Effective Dt</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="expiryDt"><span jhiTranslate="springApp.reportTemplate.expiryDt">Expiry Dt</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="status"><span jhiTranslate="springApp.reportTemplate.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdBy"><span jhiTranslate="springApp.reportTemplate.createdBy">Created By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="createdDt"><span jhiTranslate="springApp.reportTemplate.createdDt">Created Dt</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedBy"><span jhiTranslate="springApp.reportTemplate.updatedBy">Updated By</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="updatedDt"><span jhiTranslate="springApp.reportTemplate.updatedDt">Updated Dt</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="version"><span jhiTranslate="springApp.reportTemplate.version">Version</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reportTemplate of reportTemplates ;trackBy: trackId">
+                    <td><a [routerLink]="['/report-template', reportTemplate.id, 'view']">{{ reportTemplate.id }}</a></td>
+                    <td>{{ reportTemplate.templateId }}</td>
+                    <td>{{ reportTemplate.templateName }}</td>
+                    <td>{{ reportTemplate.templateFileName }}</td>
+                    <td>
+                        <a *ngIf="reportTemplate.templateFile" (click)="openFile(reportTemplate.templateFileContentType, reportTemplate.templateFile)" jhiTranslate="entity.action.open">open</a>
+                        <span *ngIf="reportTemplate.templateFile">{{ reportTemplate.templateFileContentType }}, {{ byteSize(reportTemplate.templateFile) }}</span>
+                    </td>
+                    <td>{{ reportTemplate.effectiveDt | date:'mediumDate' }}</td>
+                    <td>{{ reportTemplate.expiryDt | date:'mediumDate' }}</td>
+                    <td>{{ reportTemplate.status }}</td>
+                    <td>{{ reportTemplate.createdBy }}</td>
+                    <td>{{ reportTemplate.createdDt | date:'mediumDate' }}</td>
+                    <td>{{ reportTemplate.updatedBy }}</td>
+                    <td>{{ reportTemplate.updatedDt | date:'mediumDate' }}</td>
+                    <td>{{ reportTemplate.version }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/report-template', reportTemplate.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/report-template', reportTemplate.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(reportTemplate)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="reportTemplates && reportTemplates.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

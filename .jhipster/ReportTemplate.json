@@ -1,0 +1,66 @@
+{
+  "name": "ReportTemplate",
+  "fields": [
+    {
+      "fieldName": "templateId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "templateName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "templateFileName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "templateFile",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "effectiveDt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "expiryDt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdDt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "updatedBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "updatedDt",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20210305014705",
+  "entityTableName": "report_template",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
