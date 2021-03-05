@@ -1,0 +1,33 @@
+{
+  "springApp": {
+    "reportTemplate": {
+      "home": {
+        "title": "Report Templates",
+        "createLabel": "Create a new Report Template",
+        "createOrEditLabel": "Create or edit a Report Template",
+        "notFound": "No Report Templates found"
+      },
+      "created": "A new Report Template is created with identifier {{ param }}",
+      "updated": "A Report Template is updated with identifier {{ param }}",
+      "deleted": "A Report Template is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Report Template {{ id }}?"
+      },
+      "detail": {
+        "title": "Report Template"
+      },
+      "templateId": "Template Id",
+      "templateName": "Template Name",
+      "templateFileName": "Template File Name",
+      "templateFile": "Template File",
+      "effectiveDt": "Effective Dt",
+      "expiryDt": "Expiry Dt",
+      "status": "Status",
+      "createdBy": "Created By",
+      "createdDt": "Created Dt",
+      "updatedBy": "Updated By",
+      "updatedDt": "Updated Dt",
+      "version": "Version"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="report">
+            <h2><span jhiTranslate="springApp.report.detail.title">Report</span> {{ report.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="springApp.report.reportName">Report Name</span></dt>
+                <dd>
+                    <span>{{ report.reportName }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.report.reportSize">Report Size</span></dt>
+                <dd>
+                    <span>{{ report.reportSize }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.report.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{ report.createdBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.report.createdDt">Created Dt</span></dt>
+                <dd>
+                    <span>{{ report.createdDt }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.report.status">Status</span></dt>
+                <dd>
+                    <span>{{ report.status }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/report', report.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

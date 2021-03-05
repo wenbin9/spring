@@ -1,0 +1,77 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reportTemplate">
+            <h2><span jhiTranslate="springApp.reportTemplate.detail.title">Report Template</span> {{ reportTemplate.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="springApp.reportTemplate.templateId">Template Id</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.templateId }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.templateName">Template Name</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.templateName }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.templateFileName">Template File Name</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.templateFileName }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.templateFile">Template File</span></dt>
+                <dd>
+                    <div *ngIf="reportTemplate.templateFile">
+                        <a (click)="openFile(reportTemplate.templateFileContentType, reportTemplate.templateFile)" jhiTranslate="entity.action.open">open</a>
+                        {{ reportTemplate.templateFileContentType }}, {{ byteSize(reportTemplate.templateFile) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.effectiveDt">Effective Dt</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.effectiveDt }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.expiryDt">Expiry Dt</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.expiryDt }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.status">Status</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.status }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.createdBy">Created By</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.createdBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.createdDt">Created Dt</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.createdDt }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.updatedBy">Updated By</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.updatedBy }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.updatedDt">Updated Dt</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.updatedDt }}</span>
+                </dd>
+                <dt><span jhiTranslate="springApp.reportTemplate.version">Version</span></dt>
+                <dd>
+                    <span>{{ reportTemplate.version }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/report-template', reportTemplate.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

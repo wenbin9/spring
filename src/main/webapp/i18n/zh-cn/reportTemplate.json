@@ -1,0 +1,33 @@
+{
+  "springApp": {
+    "reportTemplate": {
+      "home": {
+        "title": "Report Templates",
+        "createLabel": "创建新 Report Template",
+        "createOrEditLabel": "创建或编辑 Report Template",
+        "notFound": "No Report Templates found"
+      },
+      "created": "Report Template {{ param }} 创建成功",
+      "updated": "Report Template {{ param }} 更新成功",
+      "deleted": "Report Template {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Report Template {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Report Template"
+      },
+      "templateId": "Template Id",
+      "templateName": "Template Name",
+      "templateFileName": "Template File Name",
+      "templateFile": "Template File",
+      "effectiveDt": "Effective Dt",
+      "expiryDt": "Expiry Dt",
+      "status": "Status",
+      "createdBy": "Created By",
+      "createdDt": "Created Dt",
+      "updatedBy": "Updated By",
+      "updatedDt": "Updated Dt",
+      "version": "Version"
+    }
+  }
+}
